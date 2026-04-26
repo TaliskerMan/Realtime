@@ -5,12 +5,21 @@ After=network.target ufw.service
 [Service]
 Type=simple
 User=root
-# We run as root or a user with permissions to read /var/log/ufw.log
-# In a real environment, you'd create a dedicated user and grant read access.
 WorkingDirectory=/opt/ufw-notifier
 ExecStart=/usr/bin/python3 /opt/ufw-notifier/ufw_watcher.py
 Restart=always
 RestartSec=5
+
+# Hardening / Sandboxing
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
 
 [Install]
 WantedBy=multi-user.target

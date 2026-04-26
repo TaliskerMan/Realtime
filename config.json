@@ -1,0 +1,23 @@
+{
+    "log_file": "/var/log/ufw.log",
+    "rate_limit_seconds": 60,
+    "max_attempts_per_limit": 50,
+    "notifications": {
+        "desktop": {
+            "enabled": true
+        },
+        "webhook": {
+            "enabled": false,
+            "url": "",
+            "type": "slack"
+        },
+        "email": {
+            "enabled": false,
+            "smtp_server": "smtp.example.com",
+            "smtp_port": 587,
+            "username": "alerts@example.com",
+            "password": "your_password",
+            "to_address": "admin@example.com"
+        }
+    }
+}

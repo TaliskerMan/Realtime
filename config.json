@@ -1,10 +1,14 @@
 {
     "log_file": "/var/log/ufw.log",
     "rate_limit_seconds": 60,
-    "max_attempts_per_limit": 50,
+    "max_attempts_per_limit": 5,
+    "geolocation": {
+        "enabled": true,
+        "cache_ttl_seconds": 3600
+    },
     "notifications": {
         "desktop": {
-            "enabled": true
+            "enabled": false
         },
         "webhook": {
             "enabled": false,

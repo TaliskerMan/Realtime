@@ -4,13 +4,37 @@ After=network.target ufw.service
 
 [Service]
 Type=simple
-User=root
-# We run as root or a user with permissions to read /var/log/ufw.log
-# In a real environment, you'd create a dedicated user and grant read access.
+# Least privilege: a dedicated user with read access to the UFW log via the
+# 'adm' group (the log is root:adm 0640). The daemon needs nothing more.
+User=ufw-notifier
+SupplementaryGroups=adm
 WorkingDirectory=/opt/ufw-notifier
 ExecStart=/usr/bin/python3 /opt/ufw-notifier/ufw_watcher.py
 Restart=always
 RestartSec=5
+
+# Sandboxing
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+ProtectKernelLogs=yes
+ProtectClock=yes
+ProtectHostname=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+CapabilityBoundingSet=
+AmbientCapabilities=
 
 [Install]
 WantedBy=multi-user.target

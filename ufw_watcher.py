@@ -53,6 +53,10 @@ def parse_block_line(line):
 
 def load_config(path=CONFIG_PATH):
     """Load JSON config; return {} on failure (logged)."""
+    resolved = os.path.realpath(os.path.join(CONFIG_DIR, path))
+    if not resolved.startswith(CONFIG_DIR + os.sep):
+        logger.error("Rejected config path outside allowed dir: %s", path)
+        return {}
     try:
         with open(path, 'r') as f:
             return json.load(f)

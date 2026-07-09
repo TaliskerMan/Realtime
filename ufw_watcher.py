@@ -18,7 +18,7 @@ import smtplib
 
 import requests
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 CONFIG_PATH = os.environ.get(
     "UFW_NOTIFIER_CONFIG",

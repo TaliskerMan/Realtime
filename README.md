@@ -1,6 +1,6 @@
 # Realtime: UFW Notification System
 
-**Version 1.0.0** · see [CHANGELOG.md](CHANGELOG.md)
+**Version 1.1.0** · see [CHANGELOG.md](CHANGELOG.md)
 
 A robust, background-running system that monitors server firewall logs in real-time and alerts users of unauthorized external connection attempts via multiple notification channels.
 
